@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Registration</title>
+<link rel="stylesheet" type="text/css" href="User_Registration.css">
+</head>
+<body>
+<div class="maindiv">
+<div class="form_div">
+<div class="title">
+<h2><marquee>Get Registered!</marquee></h2>
+</div>
+<form action="User_Registration.php" method="post">
+
+<input class="input" name="name" type="text" placeholder='User Name' required>
+
+<input class="input" name="password1" type="password" placeholder='Create Password' required>
+
+<input class="input" name="password2" type="password" placeholder='Retype Password'>
+
+<input class="input" name="email" type="text" placeholder='E-mail' required>
+
+<input class="input" name="contact" type="text" placeholder='Phone Number' required>
+
+<textarea cols="25" name="address" rows="5" placeholder='Address' required></textarea>
+<br>
+<br>
+<label> Date of Birth </label>
+<input class="input" name="dob" type="date" value="" required>
+
+<input class="input" name="foi" type="text" value="" placeholder='Fields of Interest' required><br>
+
+<input class="submit" name="submit" type="submit" value="Insert">
+</form>
+<br>
+<a href="Homepage.html"><button type="button" class="submit" onclick="alert('Welcome to homepage!')">Go back to homepage</button></a>
+</div>
+</div>
+
+</body>
+</html>
+
+ 

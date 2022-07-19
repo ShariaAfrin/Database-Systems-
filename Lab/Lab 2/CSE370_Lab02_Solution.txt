@@ -1,0 +1,1366 @@
+Microsoft Windows [Version 10.0.16299.547]
+(c) 2017 Microsoft Corporation. All rights reserved.
+
+C:\Users\17301106>cd "C:\Users\17301106\Desktop\mini_server_11\udrive\bin"
+
+C:\Users\17301106\Desktop\mini_server_11\udrive\bin>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.0.67-community-nt MySQL Community Edition (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> use student;
+Database changed
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s004   | Nahid   | ECE   | 2       |            7 |          16.5 | 3.25 | 2018-08-20 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+9 rows in set (0.00 sec)
+
+mysql> update lab_grades set name='Naheed',project marks=16 where std_id='s004';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'marks=16 where std_id='s004'' at line 1
+mysql> update lab_grades set name='Naheed',project_marks=16 where std_id='s004';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s004   | Naheed  | ECE   | 2       |            7 |            16 | 3.25 | 2018-08-20 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+9 rows in set (0.00 sec)
+
+mysql> Delete from lab_grades where std_ID='s004';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+8 rows in set (0.00 sec)
+
+mysql> delete from lab_grades where days_present<8;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table add total_marks double;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add total_marks double' at line 1
+mysql> select name,project_marks+days_present*5/12 as total_marks from lab_grades;
++---------+--------------+
+| name    | total_marks  |
++---------+--------------+
+| Abir    | 22.666666666 |
+| Naima   |           25 |
+| Nafis   |           25 |
+| Tasneem | 21.333333333 |
+| Arafat  | 24.583333333 |
+| Tasneem |         22.5 |
+| Muhtadi | 23.166666666 |
++---------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> Select Upper(Name) from lab_grades;
++-------------+
+| Upper(Name) |
++-------------+
+| ABIR        |
+| NAIMA       |
+| NAFIS       |
+| TASNEEM     |
+| ARAFAT      |
+| TASNEEM     |
+| MUHTADI     |
++-------------+
+7 rows in set (0.00 sec)
+
+mysql> Select lower(Name) from lab_grades;
++-------------+
+| lower(Name) |
++-------------+
+| abir        |
+| naima       |
+| nafis       |
+| tasneem     |
+| arafat      |
+| tasneem     |
+| muhtadi     |
++-------------+
+7 rows in set (0.00 sec)
+
+mysql> Select distinct Major from lab_grades;
++-------+
+| Major |
++-------+
+| CS    |
+| CSE   |
+| ECE   |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name,project_marks;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name,project_marks desc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name desc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name desc,subdate desc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.01 sec)
+
+mysql> Select * from lab_grades order by Name desc,subdate asc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select name,project_marks from lab_grades where project_marks>17;
++---------+---------------+
+| name    | project_marks |
++---------+---------------+
+| Abir    |          18.5 |
+| Naima   |            20 |
+| Nafis   |            20 |
+| Tasneem |            18 |
+| Arafat  |            20 |
+| Tasneem |          17.5 |
+| Muhtadi |            19 |
++---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> select name,project_marks from lab_grades where project_marks between 17 and 19;
++---------+---------------+
+| name    | project_marks |
++---------+---------------+
+| Abir    |          18.5 |
+| Tasneem |            18 |
+| Tasneem |          17.5 |
+| Muhtadi |            19 |
++---------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where major in ('cse','cs');
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+6 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where major not in ('cse');
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where project_marks>18 and subdate between '2018-08-01' and '2018-08-31';
++--------+-------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name  | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+-------+-------+---------+--------------+---------------+------+------------+
+| s019   | Naima | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
++--------+-------+-------+---------+--------------+---------------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where project_marks>18 and subdate not between '2018-08-01' and '2018-08-31';
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> Select * from lab_grades where Name like 'a%';
++--------+--------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name   | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+--------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir   | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
++--------+--------+-------+---------+--------------+---------------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where 'a%%a';
+Empty set, 1 warning (0.00 sec)
+
+mysql> Select * from lab_grades where 'a%%r';
+Empty set, 1 warning (0.00 sec)
+
+mysql> Select * from lab_grades where 'a%%r';
+Empty set, 1 warning (0.00 sec)
+
+mysql> Select * from lab_grades where Name like 'a%%r';
++--------+------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+------+-------+---------+--------------+---------------+------+------------+
+1 row in set (0.00 sec)
+
+mysql> Select * from lab_grades where Month(subdate
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> Select * from lab_grades where Month(subdate)!=8;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table lab_grades change subdate sd date;
+Query OK, 7 rows affected (0.11 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> Select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | sd         |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> C:\Users\17301106\Desktop\mini_server_11\udrive\bin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Microsoft Windows [Version 10.0.16299.547]
+(c) 2017 Microsoft Corporation. All rights reserved.
+
+C:\Users\17301106>cd "C:\Users\17301106\Desktop\mini_server_11\udrive\bin"
+
+C:\Users\17301106\Desktop\mini_server_11\udrive\bin>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.0.67-community-nt MySQL Community Edition (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> use student;
+Database changed
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s004   | Nahid   | ECE   | 2       |            7 |          16.5 | 3.25 | 2018-08-20 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+9 rows in set (0.00 sec)
+
+mysql> update lab_grades set name='Naheed',project marks=16 where std_id='s004';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'marks=16 where std_id='s004'' at line 1
+mysql> update lab_grades set name='Naheed',project_marks=16 where std_id='s004';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s004   | Naheed  | ECE   | 2       |            7 |            16 | 3.25 | 2018-08-20 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+9 rows in set (0.00 sec)
+
+mysql> Delete from lab_grades where std_ID='s004';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+8 rows in set (0.00 sec)
+
+mysql> delete from lab_grades where days_present<8;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table add total_marks double;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add total_marks double' at line 1
+mysql> select name,project_marks+days_present*5/12 as total_marks from lab_grades;
++---------+--------------+
+| name    | total_marks  |
++---------+--------------+
+| Abir    | 22.666666666 |
+| Naima   |           25 |
+| Nafis   |           25 |
+| Tasneem | 21.333333333 |
+| Arafat  | 24.583333333 |
+| Tasneem |         22.5 |
+| Muhtadi | 23.166666666 |
++---------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> Select Upper(Name) from lab_grades;
++-------------+
+| Upper(Name) |
++-------------+
+| ABIR        |
+| NAIMA       |
+| NAFIS       |
+| TASNEEM     |
+| ARAFAT      |
+| TASNEEM     |
+| MUHTADI     |
++-------------+
+7 rows in set (0.00 sec)
+
+mysql> Select lower(Name) from lab_grades;
++-------------+
+| lower(Name) |
++-------------+
+| abir        |
+| naima       |
+| nafis       |
+| tasneem     |
+| arafat      |
+| tasneem     |
+| muhtadi     |
++-------------+
+7 rows in set (0.00 sec)
+
+mysql> Select distinct Major from lab_grades;
++-------+
+| Major |
++-------+
+| CS    |
+| CSE   |
+| ECE   |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name,project_marks;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name,project_marks desc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name desc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name desc,subdate desc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.01 sec)
+
+mysql> Select * from lab_grades order by Name desc,subdate asc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select name,project_marks from lab_grades where project_marks>17;
++---------+---------------+
+| name    | project_marks |
++---------+---------------+
+| Abir    |          18.5 |
+| Naima   |            20 |
+| Nafis   |            20 |
+| Tasneem |            18 |
+| Arafat  |            20 |
+| Tasneem |          17.5 |
+| Muhtadi |            19 |
++---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> select name,project_marks from lab_grades where project_marks between 17 and 19;
++---------+---------------+
+| name    | project_marks |
++---------+---------------+
+| Abir    |          18.5 |
+| Tasneem |            18 |
+| Tasneem |          17.5 |
+| Muhtadi |            19 |
++---------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where major in ('cse','cs');
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+6 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where major not in ('cse');
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where project_marks>18 and subdate between '2018-08-01' and '2018-08-31';
++--------+-------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name  | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+-------+-------+---------+--------------+---------------+------+------------+
+| s019   | Naima | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
++--------+-------+-------+---------+--------------+---------------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where project_marks>18 and subdate not between '2018-08-01' and '2018-08-31';
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> Select * from lab_grades where Name like 'a%';
++--------+--------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name   | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+--------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir   | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
++--------+--------+-------+---------+--------------+---------------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where 'a%%a';
+Empty set, 1 warning (0.00 sec)
+
+mysql> Select * from lab_grades where 'a%%r';
+Empty set, 1 warning (0.00 sec)
+
+mysql> Select * from lab_grades where 'a%%r';
+Empty set, 1 warning (0.00 sec)
+
+mysql> Select * from lab_grades where Name like 'a%%r';
++--------+------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+------+-------+---------+--------------+---------------+------+------------+
+1 row in set (0.00 sec)
+
+mysql> Select * from lab_grades where Month(subdate
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> Select * from lab_grades where Month(subdate)!=8;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table lab_grades change subdate sd date;
+Query OK, 7 rows affected (0.11 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> Select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | sd         |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> C:\Users\17301106\Desktop\mini_server_11\udrive\bin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mysql> use student;
+Database changed
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s004   | Nahid   | ECE   | 2       |            7 |          16.5 | 3.25 | 2018-08-20 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+9 rows in set (0.00 sec)
+
+mysql> update lab_grades set name='Naheed',project marks=16 where std_id='s004';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'marks=16 where std_id='s004'' at line 1
+mysql> update lab_grades set name='Naheed',project_marks=16 where std_id='s004';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s004   | Naheed  | ECE   | 2       |            7 |            16 | 3.25 | 2018-08-20 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+9 rows in set (0.00 sec)
+
+mysql> Delete from lab_grades where std_ID='s004';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+8 rows in set (0.00 sec)
+
+mysql> delete from lab_grades where days_present<8;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table add total_marks double;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add total_marks double' at line 1
+mysql> select name,project_marks+days_present*5/12 as total_marks from lab_grades;
++---------+--------------+
+| name    | total_marks  |
++---------+--------------+
+| Abir    | 22.666666666 |
+| Naima   |           25 |
+| Nafis   |           25 |
+| Tasneem | 21.333333333 |
+| Arafat  | 24.583333333 |
+| Tasneem |         22.5 |
+| Muhtadi | 23.166666666 |
++---------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> Select Upper(Name) from lab_grades;
++-------------+
+| Upper(Name) |
++-------------+
+| ABIR        |
+| NAIMA       |
+| NAFIS       |
+| TASNEEM     |
+| ARAFAT      |
+| TASNEEM     |
+| MUHTADI     |
++-------------+
+7 rows in set (0.00 sec)
+
+mysql> Select lower(Name) from lab_grades;
++-------------+
+| lower(Name) |
++-------------+
+| abir        |
+| naima       |
+| nafis       |
+| tasneem     |
+| arafat      |
+| tasneem     |
+| muhtadi     |
++-------------+
+7 rows in set (0.00 sec)
+
+mysql> Select distinct Major from lab_grades;
++-------+
+| Major |
++-------+
+| CS    |
+| CSE   |
+| ECE   |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name,project_marks;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name,project_marks desc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name desc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades order by Name desc,subdate desc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.01 sec)
+
+mysql> Select * from lab_grades order by Name desc,subdate asc;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select name,project_marks from lab_grades where project_marks>17;
++---------+---------------+
+| name    | project_marks |
++---------+---------------+
+| Abir    |          18.5 |
+| Naima   |            20 |
+| Nafis   |            20 |
+| Tasneem |            18 |
+| Arafat  |            20 |
+| Tasneem |          17.5 |
+| Muhtadi |            19 |
++---------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> select name,project_marks from lab_grades where project_marks between 17 and 19;
++---------+---------------+
+| name    | project_marks |
++---------+---------------+
+| Abir    |          18.5 |
+| Tasneem |            18 |
+| Tasneem |          17.5 |
+| Muhtadi |            19 |
++---------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where major in ('cse','cs');
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+6 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where major not in ('cse');
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where project_marks>18 and subdate between '2018-08-01' and '2018-08-31';
++--------+-------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name  | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+-------+-------+---------+--------------+---------------+------+------------+
+| s019   | Naima | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
++--------+-------+-------+---------+--------------+---------------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where project_marks>18 and subdate not between '2018-08-01' and '2018-08-31';
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> Select * from lab_grades where Name like 'a%';
++--------+--------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name   | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+--------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir   | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s005   | Arafat | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
++--------+--------+-------+---------+--------------+---------------+------+------------+
+2 rows in set (0.00 sec)
+
+mysql> Select * from lab_grades where 'a%%a';
+Empty set, 1 warning (0.00 sec)
+
+mysql> Select * from lab_grades where 'a%%r';
+Empty set, 1 warning (0.00 sec)
+
+mysql> Select * from lab_grades where 'a%%r';
+Empty set, 1 warning (0.00 sec)
+
+mysql> Select * from lab_grades where Name like 'a%%r';
++--------+------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
++--------+------+-------+---------+--------------+---------------+------+------------+
+1 row in set (0.00 sec)
+
+mysql> Select * from lab_grades where Month(subdate
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> Select * from lab_grades where Month(subdate)!=8;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | subdate    |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table lab_grades change subdate sd date;
+Query OK, 7 rows affected (0.11 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> Select * from lab_grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| Std_ID | Name    | Major | Section | Days_present | Project_marks | CGPA | sd         |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 |
+| s019   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 |
++--------+---------+-------+---------+--------------+---------------+------+------------+
+7 rows in set (0.00 sec)
+
+mysql> C:\Users\17301106\Desktop\mini_server_11\udrive\bin
+
+
+
+
+

@@ -1,0 +1,141 @@
+.header{
+	width:910px;
+	height:80px;
+	margin-top:5px;
+	margin-left:20%;
+	margin-right:20%;
+	background-color:red;
+	border:2px;
+	border-radius:20px;
+	padding:5px;
+	animation-name:joker2;
+	animation-duration:4s;
+	animation-delay:-2s;
+	animation-iteration-count:10000000;
+	animation-direction:alternate;
+	color:black;
+	font-family:Century Gothic;
+}
+.middle_layer{
+	background-image:url("bb1.jpg");
+	background-repeat: no-repeat;
+	width:914px;
+	height:70vh;
+	background-size:cover;
+	margin-left:20%;
+	border:2px;
+	border-radius:20px;
+	animation-name:joker1;
+	animation-duration:6s;
+	animation-delay:-2s;
+	animation-iteration-count:10000000;
+	animation-direction:alternate-reverse;
+}
+.footer{
+	width:906px;
+	height:50px;
+	margin-top:5px;
+	margin-left:20%;
+	background-color:red;
+	border:2px;
+	border-radius:20px;
+	padding:5px;
+	animation-name:joker2;
+	animation-duration:8s;
+	animation-delay:2s;
+	animation-iteration-count:10000000;
+	animation-direction:alternate-reverse;
+
+}
+@keyframes joker1{
+	5%{background-image:url("bb1.jpg");}
+    25%{background-image:url("bb2.jpg");}
+	40%{background-image:url("bb3.jpg");}
+	60%{background-image:url("bb4.jpg");}
+	80%{background-image:url("bb5.jpg");}
+	100%{background-image:url("bb6.jpg");}
+}
+@keyframes joker2{
+	0%{background-color:#bb24dd;}
+    50%{background-color:#22afd8;}
+	75%{background-color:#945fee;}
+	100%{background-color:#56bcae;}
+    
+}
+h3 a{
+	text-decoration:none;
+	color:black;
+	font-size:20px;
+	padding:5px 8px;
+	border:1px solid transparent;
+	border-radius:30px;
+	transition:0.6s ease;
+}
+
+h3 a:hover{
+	background-color:BLUE;
+	color:WHITE;
+}
+.title {
+    color:olive;
+	background-color:white;
+	width:300px;
+	height:50px;
+	text-shadow:2px px 1px black;
+	font-size:24px;
+	text-align:center;
+	margin-top:5px;
+	margin-left:34%;
+	border:2px;
+	border-radius:10px;
+}
+.form_div {
+	width:70%;
+	float:left;
+}
+form {
+	width:300px;
+	padding:10px 30px 40px;
+	margin-left:44%;
+}
+textarea {
+	width:100%;
+	height:60px;
+	border-radius:1px;
+	box-shadow:0 0 1px 2px blue;
+	margin-top:5px;
+	padding:7px;
+	border:none;
+}
+.input {
+	width:100%;
+	height:30px;
+	border-radius:50px;
+	box-shadow:0 0 1px 2px blue;
+	margin-top:5px;
+	padding:7px;
+	border:none;
+	margin-bottom:20px;
+}
+.submit {
+	float:right;
+	text-decoration:none;
+	color:black;
+	font-size:12px;
+	padding:5px 8px;
+	border:1px solid transparent;
+	border-radius:30px;
+	transition:0.6s ease;
+}
+.submit:hover{
+	background-color:BLUE;
+	color:WHITE;
+}
+label{
+	color:white;
+	background-color:black;
+	border:1px;
+	border-radius:5px;
+}
+
+	

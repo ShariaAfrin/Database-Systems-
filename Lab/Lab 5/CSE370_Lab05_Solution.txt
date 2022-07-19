@@ -1,0 +1,373 @@
+                                                                    #TASK 1:
+
+mysql> create database Bank;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use bank;
+Database changed
+mysql> create table customer
+     (customer_id varchar(10) not null, customer_name varchar(20)  not null, customer_street varchar(30), customer_city varchar(30), primary key (customer_id)) ;
+
+mysql> create table branch
+     (branch_name varchar(15), branch_city varchar(30), assets int, primary key (branch_name), check (assets >= 0)) ;
+
+mysql> create table account
+     (branch_name varchar(15), account_number varchar(10) not null,balance int, primary key (account_number),check (balance >= 0)) ;
+
+mysql> create table loan
+     (loan_number varchar(10) not null,branch_name varchar(15), amount int,primary key (loan_number));
+
+mysql> create table depositor
+     (customer_id  varchar(10)  not null account_number varchar(10) not null,primary key (customer_id,account_number), foreign key (customer_id) references customer(customer_id), foreign key (account_number) references account(account_number));
+
+mysql> create table borrower (customer_id  varchar(10)  not null, loan_number varchar(10) not null, primary key (customer_id, loan_number), foreign key (customer_id) references customer(customer_id),foreign key (loan_number) references loan(loan_number));
+
+mysql> show tables;
++----------------+
+| Tables_in_bank |
++----------------+
+| account        |
+| borrower       |
+| branch         |
+| customer       |
+| depositor      |
+| loan           |
++----------------+
+
+                                                                     #TASK 2:
+
+mysql> insert into customer values
+      ('C-101','Jones', 'Main', 'Harrison'), ('C-201','Smith', 'North', 'Rye'),('C-211','Hayes', 'Main', 'Harrison'), ('C-212','Curry', 'North', 'Rye'),('C-215','Lindsay', 'Park', 'Pittsfield'),('C-220','Turner', 'Putnam', 'Stamford'),('C-222','Williams', 'Nassau', 'Princeton'),('C-225','Adams', 'Spring', 'Pittsfield'),('C-226','Johnson', 'Alma', 'Palo Alto'),('C-233','Glenn', 'Sand Hill', 'Woodside'),('C-234','Brooks', 'Senator', 'Brooklyn'),('C-255','Green', 'Walnut', 'Stamford');
+Query OK, 12 rows affected (0.00 sec)
+Records: 12  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++-------------+---------------+-----------------+---------------+
+| customer_id | customer_name | customer_street | customer_city |
++-------------+---------------+-----------------+---------------+
+| C-101       | Jones         | Main            | Harrison      |
+| C-201       | Smith         | North           | Rye           |
+| C-211       | Hayes         | Main            | Harrison      |
+| C-212       | Curry         | North           | Rye           |
+| C-215       | Lindsay       | Park            | Pittsfield    |
+| C-220       | Turner        | Putnam          | Stamford      |
+| C-222       | Williams      | Nassau          | Princeton     |
+| C-225       | Adams         | Spring          | Pittsfield    |
+| C-226       | Johnson       | Alma            | Palo Alto     |
+| C-233       | Glenn         | Sand Hill       | Woodside      |
+| C-234       | Brooks        | Senator         | Brooklyn      |
+| C-255       | Green         | Walnut          | Stamford      |
++-------------+---------------+-----------------+---------------+
+
+mysql> insert into branch values
+      ('Downtown', 'Brooklyn',9000000), ('Redwood', 'Palo Alto',2100000), ('Perryridge', 'Horseneck',1700000), ('Mianus', 'Horseneck',400000), ('Round Hill', 'Horseneck',8000000), ('Pownal', 'Bennington',300000), ('North Town', 'Rye',3700000), ('Brighton', 'Brooklyn',7100000);
+Query OK, 8 rows affected (0.00 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+mysql> select * from branch;
++-------------+-------------+---------+
+| branch_name | branch_city | assets  |
++-------------+-------------+---------+
+| Downtown    | Brooklyn    | 9000000 |
+| Redwood     | Palo Alto   | 2100000 |
+| Perryridge  | Horseneck   | 1700000 |
+| Mianus      | Horseneck   |  400000 |
+| Round Hill  | Horseneck   | 8000000 |
+| Pownal      | Bennington  |  300000 |
+| North Town  | Rye         | 3700000 |
+| Brighton    | Brooklyn    | 7100000 |
++-------------+-------------+---------+
+
+mysql> insert into account values
+     ('Downtown','A-101',500), ('Mianus','A-215',700) ,('Perryridge','A-102',400), ('Round Hill','A-305',350), ('Brighton','A-201',900), ('Redwood','A-222',700), ('Brighton','A-217',750);
+Query OK, 7 rows affected (0.02 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from account;
++-------------+----------------+---------+
+| branch_name | account_number | balance |
++-------------+----------------+---------+
+| Downtown    | A-101          |     500 |
+| Mianus      | A-215          |     700 |
+| Perryridge  | A-102          |     400 |
+| Round Hill  | A-305          |     350 |
+| Brighton    | A-201          |     900 |
+| Redwood     | A-222          |     700 |
+| Brighton    | A-217          |     750 |
++-------------+----------------+---------+
+
+mysql> insert into loan values
+     ('L-17', 'Downtown', 1000),('L-23', 'Redwood', 2000), ('L-15', 'Perryridge', 1500), ('L-14', 'Downtown', 1500), ('L-93', 'Mianus', 500), ('L-11', 'Round Hill', 900), ('L-16', 'Perryridge', 1300);
+Query OK, 7 rows affected (0.02 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from loan;
++-------------+-------------+--------+
+| loan_number | branch_name | amount |
++-------------+-------------+--------+
+| L-17        | Downtown    |   1000 |
+| L-23        | Redwood     |   2000 |
+| L-15        | Perryridge  |   1500 |
+| L-14        | Downtown    |   1500 |
+| L-93        | Mianus      |    500 |
+| L-11        | Round Hill  |    900 |
+| L-16        | Perryridge  |   1300 |
++-------------+-------------+--------+
+
+mysql> insert into depositor values
+      ('C-226', 'A-101'), ('C-201', 'A-215'), ('C-211', 'A-102'), ('C-220', 'A-305'), ('C-226', 'A-201'), ('C-101', 'A-217'),('C-215', 'A-222');
+Query OK, 7 rows affected (0.00 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from depositor;
++-------------+----------------+
+| customer_id | account_number |
++-------------+----------------+
+| C-101       | A-217          |
+| C-201       | A-215          |
+| C-211       | A-102          |
+| C-215       | A-222          |
+| C-220       | A-305          |
+| C-226       | A-101          |
+| C-226       | A-201          |
++-------------+----------------+
+
+mysql> insert into borrower values
+      ('C-101', 'L-17'), ('C-201', 'L-23'), ('C-211', 'L-15'), ('C-226', 'L-14'), ('C-212', 'L-93'), ('C-201', 'L-11'), ('C-222', 'L-17'), ('C-225', 'L-16');
+Query OK, 8 rows affected (0.00 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from  borrower;
++-------------+-------------+
+| customer_id | loan_number |
++-------------+-------------+
+| C-101       | L-17        |
+| C-201       | L-11        |
+| C-201       | L-23        |
+| C-211       | L-15        |
+| C-212       | L-93        |
+| C-222       | L-17        |
+| C-225       | L-16        |
+| C-226       | L-14        |
++-------------+-------------+
+
+                                                                      #TASK 3:
+
+mysql> select customer.customer_name,customer.customer_id,customer.customer_city,depositor.account_number from customer inner join depositor on customer.customer_id=depositor.customer_id;
++---------------+-------------+---------------+----------------+
+| customer_name | customer_id | customer_city | account_number |
++---------------+-------------+---------------+----------------+
+| Jones         | C-101       | Harrison      | A-217          |
+| Smith         | C-201       | Rye           | A-215          |
+| Hayes         | C-211       | Harrison      | A-102          |
+| Lindsay       | C-215       | Pittsfield    | A-222          |
+| Turner        | C-220       | Stamford      | A-305          |
+| Johnson       | C-226       | Palo Alto     | A-101          |
+| Johnson       | C-226       | Palo Alto     | A-201          |
++---------------+-------------+---------------+----------------+
+
+mysql> select customer.customer_name,customer.customer_id,customer.customer_city,depositor.account_number from customer left join  depositor on customer.customer_id=depositor.customer_id;
++---------------+-------------+---------------+----------------+
+| customer_name | customer_id | customer_city | account_number |
++---------------+-------------+---------------+----------------+
+| Jones         | C-101       | Harrison      | A-217          |
+| Smith         | C-201       | Rye           | A-215          |
+| Hayes         | C-211       | Harrison      | A-102          |
+| Curry         | C-212       | Rye           | NULL           |
+| Lindsay       | C-215       | Pittsfield    | A-222          |
+| Turner        | C-220       | Stamford      | A-305          |
+| Williams      | C-222       | Princeton     | NULL           |
+| Adams         | C-225       | Pittsfield    | NULL           |
+| Johnson       | C-226       | Palo Alto     | A-101          |
+| Johnson       | C-226       | Palo Alto     | A-201          |
+| Glenn         | C-233       | Woodside      | NULL           |
+| Brooks        | C-234       | Brooklyn      | NULL           |
+| Green         | C-255       | Stamford      | NULL           |
++---------------+-------------+---------------+----------------+
+
+mysql> select customer.customer_name,customer.customer_id,customer.customer_city,depositor.account_number from customer right join depositor on customer.customer_id=depositor.customer_id;
++---------------+-------------+---------------+----------------+
+| customer_name | customer_id | customer_city | account_number |
++---------------+-------------+---------------+----------------+
+| Jones         | C-101       | Harrison      | A-217          |
+| Smith         | C-201       | Rye           | A-215          |
+| Hayes         | C-211       | Harrison      | A-102          |
+| Lindsay       | C-215       | Pittsfield    | A-222          |
+| Turner        | C-220       | Stamford      | A-305          |
+| Johnson       | C-226       | Palo Alto     | A-101          |
+| Johnson       | C-226       | Palo Alto     | A-201          |
++---------------+-------------+---------------+----------------+
+
+                                                                    #TASK 4:
+
+mysql> select customer.customer_name,customer.customer_city,account.account_number,account.balance,account.branch_name from ((Customer inner join branch on customer.customer_city=branch.branch_city)inner join account on account.branch_name=branch.branch_name);
++---------------+---------------+----------------+---------+-------------+
+| customer_name | customer_city | account_number | balance | branch_name |
++---------------+---------------+----------------+---------+-------------+
+| Johnson       | Palo Alto     | A-222          |     700 | Redwood     |
+| Brooks        | Brooklyn      | A-101          |     500 | Downtown    |
+| Brooks        | Brooklyn      | A-201          |     900 | Brighton    |
+| Brooks        | Brooklyn      | A-217          |     750 | Brighton    |
++---------------+---------------+----------------+---------+-------------+
+
+                                                                    #TASK 5:
+
+mysql> select customer.customer_name,customer.customer_city,account.account_number,account.balance,account.branch_name from customer,branch,account where customer.customer_city=branch.branch_city and account.branch_name=branch.branch_name;
++---------------+---------------+----------------+---------+-------------+
+| customer_name | customer_city | account_number | balance | branch_name |
++---------------+---------------+----------------+---------+-------------+
+| Johnson       | Palo Alto     | A-222          |     700 | Redwood     |
+| Brooks        | Brooklyn      | A-101          |     500 | Downtown    |
+| Brooks        | Brooklyn      | A-201          |     900 | Brighton    |
+| Brooks        | Brooklyn      | A-217          |     750 | Brighton    |
++---------------+---------------+----------------+---------+-------------+
+
+                                                                    #TASK 6:
+
+1.
+mysql> select customer.customer_name,customer.customer_city from (customer join borrower on borrower.customer_id=customer.customer_id)join loan on borrower.loan_number=loan.loan_number where loan.branch_name='Perryridge';
++---------------+---------------+
+| customer_name | customer_city |
++---------------+---------------+
+| Hayes         | Harrison      |
+| Adams         | Pittsfield    |
++---------------+---------------+
+
+2.
+mysql> select account.account_number from account where account.balance between 700 and 900;
++----------------+
+| account_number |
++----------------+
+| A-215          |
+| A-201          |
+| A-222          |
+| A-217          |
++----------------+
+
+3.
+mysql> select customer.customer_name from customer where customer.customer_street like '%Hill';
++---------------+
+| customer_name |
++---------------+
+| Glenn         |
++---------------+
+
+4.
+mysql> select branch_city from branch where not branch_city='Brooklyn' and assets >any (select assets from branch where branch_city='Brooklyn');
++-------------+
+| branch_city |
++-------------+
+| Horseneck   |
++-------------+
+
+5.
+mysql> select branch_name from branch where assets>all(select assets from branch where branch_city='Horseneck');
++-------------+
+| branch_name |
++-------------+
+| Downtown    |
++-------------+
+
+6.
+mysql> select customer.customer_name,branch.branch_name from customer,account,depositor,branch where customer.customer_id=depositor.customer_id and depositor.account_number=account.account_number and account.branch_name=branch.branch_name and  branch.branch_name='Brighton' order by customer.customer_name asc;
++---------------+-------------+
+| customer_name | branch_name |
++---------------+-------------+
+| Johnson       | Brighton    |
+| Jones         | Brighton    |
++---------------+-------------+
+
+7.
+mysql> select * from loan order by amount desc,loan_number asc;
++-------------+-------------+--------+
+| loan_number | branch_name | amount |
++-------------+-------------+--------+
+| L-23        | Redwood     |   2000 |
+| L-14        | Downtown    |   1500 |
+| L-15        | Perryridge  |   1500 |
+| L-16        | Perryridge  |   1300 |
+| L-17        | Downtown    |   1000 |
+| L-11        | Round Hill  |    900 |
+| L-93        | Mianus      |    500 |
++-------------+-------------+--------+
+
+mysql> select * from loan order by loan_number asc, amount desc;
++-------------+-------------+--------+
+| loan_number | branch_name | amount |
++-------------+-------------+--------+
+| L-11        | Round Hill  |    900 |
+| L-14        | Downtown    |   1500 |
+| L-15        | Perryridge  |   1500 |
+| L-16        | Perryridge  |   1300 |
+| L-17        | Downtown    |   1000 |
+| L-23        | Redwood     |   2000 |
+| L-93        | Mianus      |    500 |
++-------------+-------------+--------+
+
+8.
+mysql> select branch_name from account group by branch_name having avg(balance)>=700;
++-------------+
+| branch_name |
++-------------+
+| Brighton    |
+| Mianus      |
+| Redwood     |
++-------------+
+
+9.
+mysql> select customer.customer_name,account.account_number,account.balance from customer,account,depositor where customer.customer_id=depositor.customer_id and depositor.account_number=account.account_number order by account.balance desc limit 4;
++---------------+----------------+---------+
+| customer_name | account_number | balance |
++---------------+----------------+---------+
+| Johnson       | A-201          |     900 |
+| Jones         | A-217          |     750 |
+| Lindsay       | A-222          |     700 |
+| Smith         | A-215          |     700 |
++---------------+----------------+---------+
+
+                                                                    #TASK 7:
+
+1.
+mysql>  select customer.customer_name from customer,account,depositor  where not  customer.customer_name='Johnson' and customer.customer_id=depositor.customer_id and depositor.account_number=account.account_number and account.branch_name in ('Downtown','Brighton');
++---------------+
+| customer_name |
++---------------+
+| Jones         |
++---------------+
+
+2.
+mysql>  select distinct customer.customer_name from customer, borrower,depositor,account,loan where customer.customer_id=depositor.customer_id and customer.customer_id=borrower.customer_id and depositor.account_number=account.account_number and  borrower.loan_number=loan.loan_number and account.branch_name='Mianus' and loan.branch_name!='Mianus';
++---------------+
+| customer_name |
++---------------+
+| Smith         |
++---------------+
+
+3.
+mysql>  select  account.branch_name,count(*) as number_of_customers from customer,depositor,account where customer.customer_id=depositor.customer_id and depositor.account_number=account.account_number group by account.branch_name;
++-------------+---------------------+
+| branch_name | number_of_customers |
++-------------+---------------------+
+| Brighton    |                   2 |
+| Downtown    |                   1 |
+| Mianus      |                   1 |
+| Perryridge  |                   1 |
+| Redwood     |                   1 |
+| Round Hill  |                   1 |
++-------------+---------------------+
+
+4.
+mysql> select avg(account.balance) as average_balance from customer,account,depositor where customer.customer_id=depositor.customer_id and depositor.account_number=account.account_number and 2<=(select count(*) from account,depositor,customer where customer.customer_id=depositor.customer_id and depositor.account_number=account.account_number and customer.customer_name in (select customer.customer_name from account,depositor,customer where customer.customer_id=depositor.customer_id and depositor.account_number=account.account_number and account.account_number in (select account.account_number from account where account.branch_name=(select branch.branch_name from branch where branch.branch_city='Palo Alto'))));
++-----------------+
+| average_balance |
++-----------------+
+|            NULL |
++-----------------+
+
+5.
+mysql> select customer.customer_name,account.account_number from customer,account,depositor where customer.customer_id=depositor.customer_id and depositor.account_number=account.account_number order by balance asc limit 3,2;
++---------------+----------------+
+| customer_name | account_number |
++---------------+----------------+
+| Lindsay       | A-222          |
+| Smith         | A-215          |
++---------------+----------------+

@@ -1,0 +1,222 @@
+
+X:\bin>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1
+Server version: 5.0.67-community-nt MySQL Community Edition (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> create database The_Office;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use The_Office;
+Database changed
+mysql> create table Employee_Info ( Emp_ID char(4), Name varchar(30), Age int, Role char(20), Salary int, Joining_date date);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_the_office |
++----------------------+
+| employee_info        |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> describe Employee_Info;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Emp_ID       | char(4)     | YES  |     | NULL    |       |
+| Name         | varchar(30) | YES  |     | NULL    |       |
+| Age          | int(11)     | YES  |     | NULL    |       |
+| Role         | char(20)    | YES  |     | NULL    |       |
+| Salary       | int(11)     | YES  |     | NULL    |       |
+| Joining_date | date        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> insert into Employee_Info values ("E001","Michael Scott",40,"Manager",100000,"1999-09-20"),("E002","Jim Harper", 30,"Sales Executive",60000,"2004-09-30"),("E003","Pam Beesly",28,"Receptionist",25000,"2003-09-30"),("E004","Angela Martin",33,"Accountant",65000,"2005-09-28"),("E005","Dwight Shrute",32,"Assistant Manager",60000,"2003-09-30"),("E006","Kelly Kapoor",29,"Marketing Executive",45000,"2003-09-30"),("E007","Andrew Bernard",30,"Sales Executive",50000,"2007-05-10"),("E008","Kevin Malone",28,"Accountant",60000,"2004-10-30"),("E009","Toby Flender",35,"HR Manager",70000,"2004-09-30"),("E010","Phyllis Vance",40,"Sales Executive",61000,"1999-09-20"),("E011","Crees Bratton",50,"Sales Executive",80000,"1980-06-01");
+Query OK, 11 rows affected (0.01 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
+mysql> Select * from Employee_Info;
++--------+----------------+------+---------------------+--------+--------------+
+| Emp_ID | Name           | Age  | Role                | Salary | Joining_date |
++--------+----------------+------+---------------------+--------+--------------+
+| E001   | Michael Scott  |   40 | Manager             | 100000 | 1999-09-20   |
+| E002   | Jim Harper     |   30 | Sales Executive     |  60000 | 2004-09-30   |
+| E003   | Pam Beesly     |   28 | Receptionist        |  25000 | 2003-09-30   |
+| E004   | Angela Martin  |   33 | Accountant          |  65000 | 2005-09-28   |
+| E005   | Dwight Shrute  |   32 | Assistant Manager   |  60000 | 2003-09-30   |
+| E006   | Kelly Kapoor   |   29 | Marketing Executive |  45000 | 2003-09-30   |
+| E007   | Andrew Bernard |   30 | Sales Executive     |  50000 | 2007-05-10   |
+| E008   | Kevin Malone   |   28 | Accountant          |  60000 | 2004-10-30   |
+| E009   | Toby Flender   |   35 | HR Manager          |  70000 | 2004-09-30   |
+| E010   | Phyllis Vance  |   40 | Sales Executive     |  61000 | 1999-09-20   |
+| E011   | Crees Bratton  |   50 | Sales Executive     |  80000 | 1980-06-01   |
++--------+----------------+------+---------------------+--------+--------------+
+11 rows in set (0.00 sec)
+
+mysql> Select name,role from Employee_Info where Name like "a%" or Name like "%a";
++----------------+-----------------+
+| name           | role            |
++----------------+-----------------+
+| Angela Martin  | Accountant      |
+| Andrew Bernard | Sales Executive |
++----------------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> Select name,role from Employee_Info where Name like "a%" or Name like "%e";
++----------------+-------------------+
+| name           | role              |
++----------------+-------------------+
+| Angela Martin  | Accountant        |
+| Dwight Shrute  | Assistant Manager |
+| Andrew Bernard | Sales Executive   |
+| Kevin Malone   | Accountant        |
+| Phyllis Vance  | Sales Executive   |
++----------------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> Select * from Employee_Info where Salary between 40000 and 60000;
++--------+----------------+------+---------------------+--------+--------------+
+| Emp_ID | Name           | Age  | Role                | Salary | Joining_date |
++--------+----------------+------+---------------------+--------+--------------+
+| E002   | Jim Harper     |   30 | Sales Executive     |  60000 | 2004-09-30   |
+| E005   | Dwight Shrute  |   32 | Assistant Manager   |  60000 | 2003-09-30   |
+| E006   | Kelly Kapoor   |   29 | Marketing Executive |  45000 | 2003-09-30   |
+| E007   | Andrew Bernard |   30 | Sales Executive     |  50000 | 2007-05-10   |
+| E008   | Kevin Malone   |   28 | Accountant          |  60000 | 2004-10-30   |
++--------+----------------+------+---------------------+--------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> Select * from Employee_Info where Joining_date<"2000-01-01";
++--------+---------------+------+-----------------+--------+--------------+
+| Emp_ID | Name          | Age  | Role            | Salary | Joining_date |
++--------+---------------+------+-----------------+--------+--------------+
+| E001   | Michael Scott |   40 | Manager         | 100000 | 1999-09-20   |
+| E010   | Phyllis Vance |   40 | Sales Executive |  61000 | 1999-09-20   |
+| E011   | Crees Bratton |   50 | Sales Executive |  80000 | 1980-06-01   |
++--------+---------------+------+-----------------+--------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> update Employee_Info set Salary=Salary +Salary*0.5 where Role="Sales Executive";
+Query OK, 4 rows affected (0.00 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from Employee_Info;
++--------+----------------+------+---------------------+--------+--------------+
+| Emp_ID | Name           | Age  | Role                | Salary | Joining_date |
++--------+----------------+------+---------------------+--------+--------------+
+| E001   | Michael Scott  |   40 | Manager             | 100000 | 1999-09-20   |
+| E002   | Jim Harper     |   30 | Sales Executive     |  90000 | 2004-09-30   |
+| E003   | Pam Beesly     |   28 | Receptionist        |  25000 | 2003-09-30   |
+| E004   | Angela Martin  |   33 | Accountant          |  65000 | 2005-09-28   |
+| E005   | Dwight Shrute  |   32 | Assistant Manager   |  60000 | 2003-09-30   |
+| E006   | Kelly Kapoor   |   29 | Marketing Executive |  45000 | 2003-09-30   |
+| E007   | Andrew Bernard |   30 | Sales Executive     |  75000 | 2007-05-10   |
+| E008   | Kevin Malone   |   28 | Accountant          |  60000 | 2004-10-30   |
+| E009   | Toby Flender   |   35 | HR Manager          |  70000 | 2004-09-30   |
+| E010   | Phyllis Vance  |   40 | Sales Executive     |  91500 | 1999-09-20   |
+| E011   | Crees Bratton  |   50 | Sales Executive     | 120000 | 1980-06-01   |
++--------+----------------+------+---------------------+--------+--------------+
+11 rows in set (0.00 sec)
+mysql> update Employee_Info set Salary=Salary +Salary*0.05 where Role="Sales Executive";
+Query OK, 4 rows affected (0.00 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from Employee_Info;
++--------+----------------+------+---------------------+--------+--------------+
+| Emp_ID | Name           | Age  | Role                | Salary | Joining_date |
++--------+----------------+------+---------------------+--------+--------------+
+| E001   | Michael Scott  |   40 | Manager             | 100000 | 1999-09-20   |
+| E002   | Jim Harper     |   30 | Sales Executive     |  94500 | 2004-09-30   |
+| E003   | Pam Beesly     |   28 | Receptionist        |  25000 | 2003-09-30   |
+| E004   | Angela Martin  |   33 | Accountant          |  65000 | 2005-09-28   |
+| E005   | Dwight Shrute  |   32 | Assistant Manager   |  60000 | 2003-09-30   |
+| E006   | Kelly Kapoor   |   29 | Marketing Executive |  45000 | 2003-09-30   |
+| E007   | Andrew Bernard |   30 | Sales Executive     |  78750 | 2007-05-10   |
+| E008   | Kevin Malone   |   28 | Accountant          |  60000 | 2004-10-30   |
+| E009   | Toby Flender   |   35 | HR Manager          |  70000 | 2004-09-30   |
+| E010   | Phyllis Vance  |   40 | Sales Executive     |  96075 | 1999-09-20   |
+| E011   | Crees Bratton  |   50 | Sales Executive     | 126000 | 1980-06-01   |
++--------+----------------+------+---------------------+--------+--------------+
+11 rows in set (0.00 sec)
+
+mysql> select name, salary=salary+salary*0.2 as  Michael_bonus from Employee_Info where name="Michael";
+Empty set (0.00 sec)
+
+mysql> select * from Employee_Info order by salary asc;
++--------+----------------+------+---------------------+--------+--------------+
+| Emp_ID | Name           | Age  | Role                | Salary | Joining_date |
++--------+----------------+------+---------------------+--------+--------------+
+| E003   | Pam Beesly     |   28 | Receptionist        |  25000 | 2003-09-30   |
+| E006   | Kelly Kapoor   |   29 | Marketing Executive |  45000 | 2003-09-30   |
+| E005   | Dwight Shrute  |   32 | Assistant Manager   |  60000 | 2003-09-30   |
+| E008   | Kevin Malone   |   28 | Accountant          |  60000 | 2004-10-30   |
+| E004   | Angela Martin  |   33 | Accountant          |  65000 | 2005-09-28   |
+| E009   | Toby Flender   |   35 | HR Manager          |  70000 | 2004-09-30   |
+| E007   | Andrew Bernard |   30 | Sales Executive     |  78750 | 2007-05-10   |
+| E002   | Jim Harper     |   30 | Sales Executive     |  94500 | 2004-09-30   |
+| E010   | Phyllis Vance  |   40 | Sales Executive     |  96075 | 1999-09-20   |
+| E001   | Michael Scott  |   40 | Manager             | 100000 | 1999-09-20   |
+| E011   | Crees Bratton  |   50 | Sales Executive     | 126000 | 1980-06-01   |
++--------+----------------+------+---------------------+--------+--------------+
+11 rows in set (0.00 sec)
+
+mysql> select * from Employee_Info order by salary desc;
++--------+----------------+------+---------------------+--------+--------------+
+| Emp_ID | Name           | Age  | Role                | Salary | Joining_date |
++--------+----------------+------+---------------------+--------+--------------+
+| E011   | Crees Bratton  |   50 | Sales Executive     | 126000 | 1980-06-01   |
+| E001   | Michael Scott  |   40 | Manager             | 100000 | 1999-09-20   |
+| E010   | Phyllis Vance  |   40 | Sales Executive     |  96075 | 1999-09-20   |
+| E002   | Jim Harper     |   30 | Sales Executive     |  94500 | 2004-09-30   |
+| E007   | Andrew Bernard |   30 | Sales Executive     |  78750 | 2007-05-10   |
+| E009   | Toby Flender   |   35 | HR Manager          |  70000 | 2004-09-30   |
+| E004   | Angela Martin  |   33 | Accountant          |  65000 | 2005-09-28   |
+| E005   | Dwight Shrute  |   32 | Assistant Manager   |  60000 | 2003-09-30   |
+| E008   | Kevin Malone   |   28 | Accountant          |  60000 | 2004-10-30   |
+| E006   | Kelly Kapoor   |   29 | Marketing Executive |  45000 | 2003-09-30   |
+| E003   | Pam Beesly     |   28 | Receptionist        |  25000 | 2003-09-30   |
++--------+----------------+------+---------------------+--------+--------------+
+11 rows in set (0.00 sec)
+
+mysql>  select * from Employee_Info order by age asc;
++--------+----------------+------+---------------------+--------+--------------+
+| Emp_ID | Name           | Age  | Role                | Salary | Joining_date |
++--------+----------------+------+---------------------+--------+--------------+
+| E003   | Pam Beesly     |   28 | Receptionist        |  25000 | 2003-09-30   |
+| E008   | Kevin Malone   |   28 | Accountant          |  60000 | 2004-10-30   |
+| E006   | Kelly Kapoor   |   29 | Marketing Executive |  45000 | 2003-09-30   |
+| E002   | Jim Harper     |   30 | Sales Executive     |  94500 | 2004-09-30   |
+| E007   | Andrew Bernard |   30 | Sales Executive     |  78750 | 2007-05-10   |
+| E005   | Dwight Shrute  |   32 | Assistant Manager   |  60000 | 2003-09-30   |
+| E004   | Angela Martin  |   33 | Accountant          |  65000 | 2005-09-28   |
+| E009   | Toby Flender   |   35 | HR Manager          |  70000 | 2004-09-30   |
+| E010   | Phyllis Vance  |   40 | Sales Executive     |  96075 | 1999-09-20   |
+| E001   | Michael Scott  |   40 | Manager             | 100000 | 1999-09-20   |
+| E011   | Crees Bratton  |   50 | Sales Executive     | 126000 | 1980-06-01   |
++--------+----------------+------+---------------------+--------+--------------+
+11 rows in set (0.00 sec)
+
+mysql> select * from employee_info whwre age>35 and joining_date<"2003-01-01";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'age>35 and joining_date<"2003-01-01"' at line 1
+mysql> select * from employee_info where age>35 and joining_date<"2003-01-01";
++--------+---------------+------+-----------------+--------+--------------+
+| Emp_ID | Name          | Age  | Role            | Salary | Joining_date |
++--------+---------------+------+-----------------+--------+--------------+
+| E001   | Michael Scott |   40 | Manager         | 100000 | 1999-09-20   |
+| E010   | Phyllis Vance |   40 | Sales Executive |  96075 | 1999-09-20   |
+| E011   | Crees Bratton |   50 | Sales Executive | 126000 | 1980-06-01   |
++--------+---------------+-
